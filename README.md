@@ -1,5 +1,7 @@
 # RaspberryPi-Translator
-Term project for cs370. Creates a voice translator. 
+Term project for cs370. Creates a voice translator. Plan A or B will be implemented based on which is the better option. 
+- Plan A will be 1 peripheral microphone, Raspberry Pi Model 4B, 1 peripheral speaker.
+- plan B will be 1 desktop w/ input, raspberry Pi Model 4B, 1 desktop with sound output. 
 
 ## File 1: Speech to text (Plan)
 - This file's main purpose will be to activate the microphone connected to either 1 computer, or to an externally connected microphone on the Raspberry Pi. The microphone will record the speaker's voice and save it as accurately as possible as a text string. 
