@@ -1,0 +1,4 @@
+## modules/dependencies to install
+pip install speechrecognition
+pip install pyaudio
+pip install pyttsx3 ## may need to install like this: pip install git+https://github.com/nateshmbhat/pyttsx3 on windows machine. 
