@@ -2,6 +2,7 @@
 import speech_recognition as sr
 import pyttsx3
 import sys
+from text_translation import *
 
 
 # sets default language
@@ -41,10 +42,10 @@ def SpeakText(command):
     engine.runAndWait()
 
 record = '0'
-# record = input("Press 1 to record\n")
+record = input("Press 1 to record\n")
 
 ## commented out for testing setup. 
-'''
+
 while(record == '1'):
     try: 
         with sr.Microphone() as source2: 
@@ -55,6 +56,7 @@ while(record == '1'):
 
             print("Did you say ",myText)
             SpeakText(myText)
+            translate_speech(myText)
 
         print("done, setting record to 0. ")
         record = '0'
@@ -62,4 +64,5 @@ while(record == '1'):
         print("Could not request results; {0}".format(e))
     except sr.UnknownValueError: 
             print("an unknown error occurred.")
-'''
+
+# pass in my text into text translation here. 
