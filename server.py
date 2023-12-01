@@ -1,5 +1,12 @@
 ## This will be the main server file. 
 
+## todo: fix server termination, stays open until another client refreshes the thread. 
+
+## todo: add translation methods here
+
+## keep track of connections and relay messages to each other. 
+
+
 
 import socket     
 import threading

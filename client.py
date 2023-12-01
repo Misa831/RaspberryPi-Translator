@@ -39,7 +39,7 @@ elif user_choice == 'q':
 print(f'I am currently set to translate from English to {lang}')
 r = sr.Recognizer()
 
-
+## movign these to their own file and importing for cleanliness. 
 def SpeakText(command):
     engine = pyttsx3.init()
     engine.say(command)
@@ -60,9 +60,9 @@ def record():
     except sr.UnknownValueError: 
             print("an unknown error occurred.")
 
-
+## todo: send mytext over the server. Add text translation in server and relay mytext to other connected user. 
 while True:
-    message = input("Enter message to send (or 'exit' to quit) or rec: ")
+    message = input("Enter message to send (or 'exit' to quit) or rec to begin recording: ")
     if message.lower() == 'rec':
         print("Record message: ")
         record()
