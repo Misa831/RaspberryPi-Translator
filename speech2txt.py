@@ -1,39 +1,13 @@
 
+## prototype file ## 
+
+
+
 import speech_recognition as sr
 import pyttsx3
 import sys
 from text_translation import *
 
-
-# sets default language
-lang = 'English'
-
-print("Hello! This is the Raspberry Pi Language Translator")
-print("Please choose a language to translate to: ")
-user_choice = input("[0]: English   [1] Spanish   [2] French   [3] More options   [q] Quit Program \n")
-
-if user_choice == '3': 
-    user_choice = input("[4] Portuguese   [5] German   [q] Quit Program \n")
-    #lang won't update unless nested 
-    if user_choice == '4':
-        lang = 'Portuguese'
-    elif user_choice == '5':
-        lang = 'German'
-    elif user_choice == 'q':
-        sys.exit()
-elif user_choice == '1':
-    lang = 'Spanish'
-elif user_choice == '2':
-    lang = 'French'
-elif user_choice == '0':
-    lang = 'English'
-elif user_choice == 'q':
-    sys.exit()
-
-
-print(f'I am currently set to translate from English to {lang}')
-
-#speech recognizer 
 r = sr.Recognizer()
 
 def SpeakText(command):
@@ -65,4 +39,4 @@ while(record == '1'):
     except sr.UnknownValueError: 
             print("an unknown error occurred.")
 
-# pass in my text into text translation here. 
+
