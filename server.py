@@ -17,6 +17,7 @@ def handle_client(client_socket, client_address):
               for other_client in clients: 
                      if other_client != client_socket: 
                             try:
+                                   print("Relaying message to other clients.")
                                    send_string = f"\nReceived message: {tran_msg}\nPress r to begin recording, or 'exit' to quit:"
                                    other_client.send(send_string.encode('utf-8'))
                             except socket.error:
