@@ -1,9 +1,6 @@
 from googletrans import Translator, constants
 from pprint import pprint
 
-# take in mytext as a command line argument with selected language. 
-#translate to language 
-# return data to main
 
 def translate_speech(speech):
     translator = Translator()

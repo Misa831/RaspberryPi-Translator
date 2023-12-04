@@ -54,7 +54,8 @@ def record():
             myText = myText.lower()
             print("Did you say ",myText)
             SpeakText(myText)
-        print("done, setting record to 0. ")
+        print("done, setting record to 0.")
+        return myText
     except sr.RequestError as e: 
         print("Could not request results; {0}".format(e))
     except sr.UnknownValueError: 
@@ -62,12 +63,12 @@ def record():
 
 ## todo: send mytext over the server. Add text translation in server and relay mytext to other connected user. 
 while True:
-    message = input("Enter message to send (or 'exit' to quit) or rec to begin recording: ")
-    if message.lower() == 'rec':
-        print("Record message: ")
-        record()
+    message = input("Press r to begin recording, or 'exit' to quit: ")
+    if message.lower() == 'r':
+        print("Recording message: ")
+        recordedMsg = record()
     elif message.lower() == 'exit':
         break
-    client_socket.send(message.encode('utf-8'))
+    client_socket.send(recordedMsg.encode('utf-8'))
 
 client_socket.close()
