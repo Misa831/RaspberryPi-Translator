@@ -22,9 +22,8 @@ def record():
             print("Did you say ",myText)
             SpeakText(myText)
             return myText
-        print("done, setting record to 0.")
     except sr.RequestError as e: 
-        print("Could not request results; {0}".format(e))
+        print("Could not request results: {0}".format(e))
     except sr.UnknownValueError: 
             print("an unknown error occurred.")
 
@@ -33,10 +32,10 @@ def receive_messages(client_socket):
         try:
             data = client_socket.recv(1024)
             if not data:
-                break
+                exit(1)
             print(data.decode('utf-8'))
         except socket.error:
-            break
+            exit(1)
 
 ## Connect to the server. 
 r = sr.Recognizer()
@@ -57,6 +56,7 @@ while True:
     if message.lower() == 'r':
         print("Recording message: ")
         recordedMsg = record()
+        print("Done Recording")
     elif message.lower() == 'exit':
         break
     client_socket.send(recordedMsg.encode('utf-8'))
