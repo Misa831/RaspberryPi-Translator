@@ -24,6 +24,14 @@ def handle_client(client_socket, client_address):
               print("Translating... ")
               translate_speech(msg)
 
+              for other_client in clients: 
+                     if other_client != client_socket: 
+                            try:
+                                   other_client.send(data)
+                            except socket.error:
+                                   break
+       clients.remove(client_socket)
+       client_socket.close()
        print(f"Connection from {client_address} closed.")
 
 
@@ -33,8 +41,6 @@ def handle_client(client_socket, client_address):
 port = 12345  
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)          
 print ("Socket successfully created")
-
-
 server_socket.bind(('0.0.0.0', port))         
 print(f'Socket bound to port {port}') 
 server_socket.listen(1)
@@ -49,6 +55,8 @@ def shutdown():
 
 shutdown_thread = threading.Thread(target=shutdown)
 shutdown_thread.start()
+
+clients = []
 
 while running:
        try:
