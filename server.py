@@ -7,12 +7,16 @@ def handle_client(client_socket, client_address):
        
        while True:
               data = client_socket.recv(1024)
-              msg = data.decode('utf-8')
               if not data:
                      break
+              msg = data.decode('utf-8')
+              parts = msg.split(':',2)
+              if len(parts) != 3:
+                     continue
+              src_lang, dest_lang, text = parts
               print(f"received from {client_address}: {msg}")
               print("Translating... ")
-              tran_msg = translate_speech(msg)
+              tran_msg = translate_speech(text, src_lang, dest_lang)
 
               for other_client in clients: 
                      if other_client != client_socket: 
