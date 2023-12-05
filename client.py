@@ -37,6 +37,20 @@ def receive_messages(client_socket):
         except socket.error:
             exit(1)
 
+## Language Selection
+language_codes = {
+    '1': 'zh',
+    '2': 'es',
+    '3': 'en',
+    '4': 'ar',
+    '5': 'hi',
+    '6': 'bn',
+    '7': 'pt',
+    '8': 'ru',
+    '9': 'ja',
+    '10': 'pa'
+}
+    
 ## Connect to the server. 
 r = sr.Recognizer()
 port = 12345
@@ -44,8 +58,19 @@ client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 # change to server's ip address if on another computer. 
 client_socket.connect(('localhost', port))
 print("Connected to the server\n")
-print("Hello! This is the Raspberry Pi Language Translator")
+print("Hello! This is the Raspberry Pi Language Translator\n")
 
+
+print("Select Source Language: 1 for Chinese, 2 for Spanish, 3 for English, 4 for Arabic, 5 for Hindi\n")
+print("                6 for Bengali, 7 for Portoguese, 8 for Russian, 9 for Japanese, 10 for Punjabi\n")
+source_lang_choice = input("Enter your choice: \n")
+source_lang = language_codes.get(source_lang_choice, 'en') # Default to English if invalid choice
+
+
+print("Select Destination Language: 1 for Chinese, 2 for Spanish, 3 for English, 4 for Arabic, 5 for Hindi\n")
+print("                     6 for Bengali, 7 for Portoguese, 8 for Russian, 9 for Japanese, 10 for Punjabi\n")
+dest_lang_choice = input("Enter your choice: \n")
+dest_lang = language_codes.get(dest_lang_choice, 'es')  # Default to Spanish if invalid choice
 
 receive_thread = threading.Thread(target=receive_messages, args=(client_socket,))
 receive_thread.start()
@@ -59,6 +84,6 @@ while True:
         print("Done Recording")
     elif message.lower() == 'exit':
         break
-    client_socket.send(recordedMsg.encode('utf-8'))
+    client_socket.send(f"{source_lang}:{dest_lang}:{recordedMsg}".encode('utf-8'))
 
 client_socket.close()
