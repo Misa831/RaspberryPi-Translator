@@ -19,7 +19,7 @@ def record():
             audio2 = r.listen(source2)
             myText = r.recognize_google(audio2)
             myText = myText.lower()
-            print("Did you say ",myText)
+            print("Recorded Message: ", myText)
             SpeakText(myText)
             return myText
     except sr.RequestError as e: 
@@ -31,9 +31,12 @@ def receive_messages(client_socket):
     while True:
         try:
             data = client_socket.recv(1024)
+            msg = client_socket.recv(1024)
             if not data:
                 exit(1)
             print(data.decode('utf-8'))
+            to_speak = msg.decode('utf-8')
+            SpeakText(to_speak)
         except socket.error:
             exit(1)
 
