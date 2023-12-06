@@ -1,17 +1,31 @@
 # RaspberryPi-Translator
-Term project for cs370. Creates a voice translator. Plan A or B will be implemented based on which is the better option. 
-- Plan A will be 1 peripheral microphone, Raspberry Pi Model 4B, 1 peripheral speaker.
-- plan B will be 1 desktop w/ input, raspberry Pi Model 4B, 1 desktop with sound output. 
+Term project for cs370. Creates a voice translator.
+Usage will be 1 desktop w/ input, raspberry Pi Model 4B, 1 desktop with sound output. 
 
-## File 1: Speech to text (Plan)
-- This file's main purpose will be to activate the microphone connected to either 1 computer, or to an externally connected microphone on the Raspberry Pi. The microphone will record the speaker's voice and save it as accurately as possible as a text string. 
+# Quick start guide: 
+- install dependencies `pip install -r requirements.txt`
+- Server: `python3 server.py`
+- Clients: `python3 client.py`
 
-## File 2: Text translator (Plan)
-- This file's main purpose will be to take in the text string passed in from file 1 and using an online API, will send a json request with the expected response being the same string translated to another language. 
-## File 3: Text to speech (Plan)
-- This file's main purpose will be to use the JSON API response with the translated text, and output simulated voice allowing one to communicate in multiple languages using the raspberry pi. 
+# Usage: 
+- The raspberry Pi will be the server, serving as a point of connection between two or more computers. 
+- Raspberry Pi will run `python3 server.py` 
+- Clients wishing to connect will run `python3 client.py` 
+- Once 2 or more clients are connected, the server will confirm connected parties. 
+- connected clients can choose their language for input, and the language they with to translate to. 
+- Once configured, the clients will be able to record their message, which will be relayed to all other clients connected to the server. 
+- When wanting to exit, all connected parties will type `exit` to disconnect from the server and terminate the program. 
+
+
+# Error handling
+- 'No module xxx imported/installed' means that the required dependencies are not installed on the system. Please see requirements.txt for required python dependencies.
+- Modules can be installed using `pip install xxx`
+
 
 # Project Authors
 - Misael Sandoval
 - Lucas Martinez
 - Abdullah Alhumaidhan
+
+
+## This project was created during the Fall 2023 seemster for CS 370. 
